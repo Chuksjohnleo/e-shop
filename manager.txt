@@ -1,0 +1,6 @@
+1. navigation buttons on homepage images scroll
+2. scrolling on android
+3. Notification
+4. Subscription
+5. Single product card with product full details
+6. Categories
