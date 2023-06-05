@@ -19,7 +19,7 @@ const PopularProducts: React.FC = () =>{
          <section className="my-6">
             <div>
              <div>
-                <strong className="inline-block text-center text-[white] rounded-[10px] py-2 px-5 bg-primaryColor">Popular</strong>
+                <strong className="inline-block animate-bounce text-center text-[white] rounded-[10px] py-2 px-5 bg-primaryColor">Popular</strong>
              </div>
              <h1 className="font-bold text-3xl mb-4">
                 <span className="text-primaryColor"> Popular </span>

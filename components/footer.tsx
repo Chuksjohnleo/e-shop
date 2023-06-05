@@ -5,17 +5,17 @@ const Footer: React.FC = () =>{
 
     return(
         <>
-         <section className="mt-16 p-3 text-white border-t text-center bg-slate-600">
+         <footer className="mt-16 font-bold p-3 text-white border-t text-center bg-slate-600">
              <h1 className="font-bold text-2xl mb-4">
                 <span>Medi</span>
                 <span className="text-primaryColor">Cos</span>
              </h1>
            <div className="flex flex-col sm:flex-row-reverse justify-around">
            <div className="flex flex-col flex-1">
-            <div className="flex flex-col xSm:flex-row justify-around my-3 w-full items-center self-center">
-             <Link className="underline flex-1" href='/about-us'> About </Link>
-             <Link className="underline m-3" href='/about-us'> Privacy policy </Link>
-             <Link className="underline m-3" href='/about-us'> Terms and conditions </Link>
+            <div className="flex flex-col justify-around my-3 w-full items-center self-center">
+             <Link className="flex-1" href='/about-us'> About </Link>
+             <Link className="m-3" href='/about-us'> Privacy policy </Link>
+             <Link className="m-3" href='/about-us'> Terms and conditions </Link>
             </div>
             <div className="flex justify-around w-ful w-[50%] self-center">
              <div>
@@ -46,7 +46,7 @@ const Footer: React.FC = () =>{
            </div>
 
            </div>
-         </section>
+         </footer>
         </>
     )
 }

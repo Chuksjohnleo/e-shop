@@ -46,8 +46,8 @@ const [categoriesArrowStyle, setCategoriesArrowStyle] = useState<string>('');
           <Link className="p-2 border-t hover:text-[white] hover:bg-primaryColor" href='/'>
             Home
           </Link>
-          <div onClick={(e)=>collapse(categoryRef, e)}>
-           <div className="group relative flex justify-between items-center p-2 border-t hover:fill-[white] hover:text-[white] hover:bg-primaryColor">
+          <div>
+           <div  onClick={(e)=>collapse(categoryRef, e)} className="group cursor-pointer relative flex justify-between items-center p-2 border-t hover:fill-[white] hover:text-[white] hover:bg-primaryColor">
             <span> Categories </span> 
             <svg className={`group-hover:fill-[white] ease-in duration-300 ${categoriesArrowStyle}`} width="15" height="15" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
              <g>
@@ -56,17 +56,17 @@ const [categoriesArrowStyle, setCategoriesArrowStyle] = useState<string>('');
             </svg>
             </div>
             <ul ref={categoryRef} className="h-0 overflow-hidden ml-4 list-disc list-inside">
-             <li className="hover:text-secondaryColor">
-               <Link className=" break-words" href='/cart'>
+             <li className="hover:text-secondaryColor p-1 m-1 bg-secondaryColor/10">
+               <Link className="break-words" href='/cart'>
                 tick
                </Link>
               </li>
-              <li className="hover:text-secondaryColor">
-               <Link className=" break-words" href='/about-us'>
+              <li className="hover:text-secondaryColor p-1 m-1 rounded bg-secondaryColor/10">
+               <Link className="break-words" href='/about-us'>
                 bumbper
                </Link>
              </li>
-             <li className="hover:text-secondaryColor">
+             <li className="hover:text-secondaryColor p-1 m-1 rounded bg-secondaryColor/10">
                <Link className=" break-words" href='/privacy-policy'>
                 gabajan
                </Link>

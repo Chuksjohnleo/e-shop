@@ -20,7 +20,7 @@ const Categories: React.FC = () =>{
          <section className="my-6">
             <div>
              <div>
-                <strong className="inline-block text-center text-[white] rounded-[10px] py-2 px-5 bg-primaryColor">
+                <strong className="inline-block animate-bounce text-center text-[white] rounded-[10px] py-2 px-5 bg-primaryColor">
                    Categories
                 </strong>
              </div>

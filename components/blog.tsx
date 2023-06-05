@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import ProductCard from "./productCard";
+import BlogCard from "./blogCard";
 import demoProduct from '@/assets/drugs/alexander-grey-FEPfs43yiPE-unsplash.jpg';
 
 
-const ProductList: React.FC = () =>{
+const Blog: React.FC = () =>{
     const [products, setProducts] = useState<number[]>([]);
 
     const arr: number[] = [];
@@ -20,17 +20,20 @@ const ProductList: React.FC = () =>{
          <section className="my-6">
             <div>
              <div>
-                <strong className="inline-block animate-bounce text-center text-[white] rounded-[10px] py-2 px-5 bg-primaryColor">New</strong>
+                <strong className="inline-block animate-bounce text-center text-[white] rounded-[10px] py-2 px-5 bg-primaryColor">
+                   Blog
+                </strong>
              </div>
              <h1 className="font-bold text-3xl mb-4">
-                <span className="text-primaryColor"> Newest </span>
-                <span> Deals </span>
+                <span className="text-primaryColor"> Get health tips </span>
+                <span> from our </span>
+                <span className="text-primaryColor"> blog </span>
              </h1>
             </div>
-            <div className="items-center justify-center grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+            <div className="flex flex-col lg:grid grid-cols-2">
              {products.map((p,i)=>{
                return(
-                <ProductCard pics={demoProduct} p={p} key={i} />
+                <BlogCard pics={demoProduct} p={p} key={i} />
                )
              })}
             </div>
@@ -39,4 +42,4 @@ const ProductList: React.FC = () =>{
     )
 }
 
-export default ProductList;
+export default Blog;

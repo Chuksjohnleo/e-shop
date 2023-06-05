@@ -16,6 +16,7 @@ import Footer from './footer';
 import PopularProducts from './popularProducts';
 import Link from 'next/link';
 import Categories from './categories';
+import Blog from './blog';
 // import Fo
 
 function Home(){
@@ -100,6 +101,7 @@ function Home(){
            <Services />
            <About />
          </div>
+         <Blog />
          <OtherInfo />
          </div>
          <Footer />

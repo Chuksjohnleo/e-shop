@@ -23,7 +23,7 @@ const Nav: React.FC = () =>{
   }
     return(
     <>
-    <header className='sticky top-0 z-50 backdrop-blur border-b bg-white/80'>
+    <header className='sticky top-0 z-50 backdrop-blur border-b sm:bg-[white]/80'>
      <nav className='flex justify-between py-2 p-1 items-center'>
       {/* <div>
         <svg width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
@@ -94,7 +94,7 @@ const Nav: React.FC = () =>{
      </nav>
      <Menu handler={openAndCloseMenu} theWidth={navWidth} />
      <div className='w-full p-1 flex justify-center'>
-      <input onFocusCapture={openAndCloseMenu} onFocus={openAndCloseMenu} className='w-[80%] p-[2px] focus:shadow-lg focus:shadow-primaryColor px-2 bg-[transparent] focus:outline-primaryColor rounded-l-full border border-primaryColor placeholder:text-primaryColor' type='text' placeholder='Type any drug name' />
+      <input onFocusCapture={focusOnSearchBar} onFocus={openAndCloseMenu} className='w-[80%] p-[2px] focus:shadow-lg focus:shadow-primaryColor px-2 bg-[transparent] focus:outline-primaryColor rounded-l-full border border-primaryColor placeholder:text-primaryColor' type='text' placeholder='Type any drug name' />
       <button type='button' className='border font-bold text-[14px] px-2 active:bg-primaryColor active:text-[white] border-l-0 border-primaryColor'>Search</button>
      </div>
     </header>
