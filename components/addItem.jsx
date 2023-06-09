@@ -1,11 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import Image from 'next/image';
-import icon from './images/photom.jpg';
 import ConfirmModal from './confirmModal';
 import Progress from "./progress";
 import Status from "./status";
 import dynamic from 'next/dynamic';
-const ReactQuill = dynamic(import('react-quill'), {ssr: false  });
 
 
 export default function Editor(){
@@ -460,13 +457,7 @@ const formats = [
                <span>{descriptionCounter}/200</span>
              </div>
             <div id='writePost'>
-              <ReactQuill
-               value={content}
-               formats={formats}
-               modules={modules}
-               placeholder='Write Post Here'
-               onChange={handleEditorText} 
-              />
+             <input type='number' placeholder='price' className='w-full border-2 p-2 text-2xl focus:outline-none focus:shadow focus:shadow-black'  />
             </div>
             <div className='font-bold'>
               <span> {contentLength} </span>

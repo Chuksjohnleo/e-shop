@@ -57,7 +57,7 @@ const [categoriesArrowStyle, setCategoriesArrowStyle] = useState<string>('');
             </div>
             <ul ref={categoryRef} className="h-0 overflow-hidden ml-4 list-disc list-inside">
              <li className="hover:text-secondaryColor p-1 m-1 bg-secondaryColor/10">
-               <Link className="break-words" href='/cart'>
+               <Link className="break-words" href='/add-item'>
                 tick
                </Link>
               </li>

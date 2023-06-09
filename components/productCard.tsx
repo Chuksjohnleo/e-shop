@@ -24,7 +24,7 @@ const ProductCard: React.FC<myComp> = ({ p, pics }) =>{
             </div>
             <div className="flex flex-col items-center sm:m-2 sm:justify-between sm:flex-row">
                 <strong className="text-[16.1px] xSm:text-xl">$105.03</strong>
-                <Link href='/view-details/id' className="py-1 sm:rounded-br-2xl text-center text-[white] bg-primaryColor px-1 rounded-md m-1 inline-block">
+                <Link href={`/products/p1`} className="py-1 sm:rounded-br-2xl text-center text-[white] bg-primaryColor px-1 rounded-md m-1 inline-block">
                   Add to cart
                 </Link>
             </div>
