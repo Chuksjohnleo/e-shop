@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Nav from './nav';
 import SwipeHandler from './swipeHandler';
-import { GeneralContext } from '@/context/context';
 import Image, { StaticImageData } from 'next/image';
 
 import popularPics from '@/assets/drugs/myriam-zilles-KltoLK6Mk-g-unsplash.jpg';
@@ -20,7 +19,6 @@ import Blog from './blog';
 // import Fo
 
 function Home(){
-  const { navWidth, setNavWidth } = useContext(GeneralContext)
   const [count, setCount] = useState<number>(0);
   const [imageUrl, setImageUrl] = useState<StaticImageData>(demoImage);
   
@@ -49,11 +47,7 @@ function Home(){
     return(
         <>
         <Nav/>
-        <div onClick={()=>{
-           if(navWidth!=='w-0'){
-            setNavWidth('w-0');
-          }
-        }} className='p-2'>
+        <div className='p-2'>
          <section>
           <SwipeHandler setCount={setCount} imageNumber={urls.length}>
            <div className='relative flex flex-col justify-end items-center'>

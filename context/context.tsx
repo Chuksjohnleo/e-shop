@@ -19,7 +19,16 @@ const ContextProvider: React.FC<compProps> = ({children}) => {
         setNavWidth: setNavWidth
       }}
      >
+      <div onClick={(e)=>{
+        const targetElement = e.target as HTMLElement;
+        //I would have used onClick={(e)=>e.stopPropagation()} in 
+        //affected elements but I may also need onclick events in them.
+           if(navWidth!=='w-0' && !targetElement.closest('nav')){
+            setNavWidth('w-0');
+          }
+        }} >
        {children}
+      </div>
      </GeneralContext.Provider>
      )
 }

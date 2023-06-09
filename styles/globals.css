@@ -16,6 +16,10 @@
   }
 }
 
+li::marker{
+  content: '♥ ';
+  /* 🤍 ► */
+}
 
 @media screen and (hover:hover){
 

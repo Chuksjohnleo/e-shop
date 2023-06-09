@@ -1,12 +1,35 @@
 import Link from 'next/link';
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Menu from './menu';
 import { GeneralContext } from '@/context/context';
+import Router from 'next/router';
 
 
 const Nav: React.FC = () =>{
+  
   const { navWidth, setNavWidth } = useContext(GeneralContext);
-  const [animation, setAnimation] = useState<string>('w-0');
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const handleStart = () => {
+      setLoading(true);
+      setNavWidth('w-0');
+    };
+
+    const handleComplete = () => {
+      setLoading(false);
+    };
+
+    Router.events.on('routeChangeStart', handleStart);
+    Router.events.on('routeChangeComplete', handleComplete);
+    Router.events.on('routeChangeError', handleComplete);
+
+    return () => {
+      Router.events.off('routeChangeStart', handleStart);
+      Router.events.off('routeChangeComplete', handleComplete);
+      Router.events.off('routeChangeError', handleComplete);
+    };
+  }, []);
 
   function openAndCloseMenu() {
     if(navWidth==='w-0'){
@@ -17,13 +40,13 @@ const Nav: React.FC = () =>{
   }
 
   function focusOnSearchBar(){
-    if(navWidth!=='w-0'){
+    if(navWidth !== 'w-0' ){
       setNavWidth('w-0');
     }
   }
     return(
     <>
-    <header className='sticky top-0 z-50 backdrop-blur border-b sm:bg-[white]/80'>
+    <header className='sticky top-0 z-50 backdrop-blur border-b bg-[white]/50'>
      <nav className='flex justify-between py-2 p-1 items-center'>
       {/* <div>
         <svg width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
@@ -48,7 +71,7 @@ const Nav: React.FC = () =>{
       </div>
       <div className='hidden text-secondaryColor sm:flex justify-around gap-1 text-[13px] sm:gap-9 xSm:text-[16.1px] font-semibold'>
         <div>
-         <Link href='/'>
+         <Link href='/about-us'>
           About
          </Link>
         </div>
@@ -94,7 +117,7 @@ const Nav: React.FC = () =>{
      </nav>
      <Menu handler={openAndCloseMenu} theWidth={navWidth} />
      <div className='w-full p-1 flex justify-center'>
-      <input onFocusCapture={focusOnSearchBar} onFocus={openAndCloseMenu} className='w-[80%] p-[2px] focus:shadow-lg focus:shadow-primaryColor px-2 bg-[transparent] focus:outline-primaryColor rounded-l-full border border-primaryColor placeholder:text-primaryColor' type='text' placeholder='Type any drug name' />
+      <input onFocus={focusOnSearchBar} className='w-[80%] p-[2px] focus:shadow-lg focus:shadow-primaryColor px-2 bg-[transparent] focus:outline-primaryColor rounded-l-full border border-primaryColor placeholder:text-primaryColor' type='text' placeholder='Type any drug name' />
       <button type='button' className='border font-bold text-[14px] px-2 active:bg-primaryColor active:text-[white] border-l-0 border-primaryColor'>Search</button>
      </div>
     </header>

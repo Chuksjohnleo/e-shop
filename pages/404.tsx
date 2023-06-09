@@ -1,6 +1,7 @@
 import Footer from "@/components/footer";
 import Nav from "@/components/nav";
 import ProductList from "@/components/productList";
+import ContextProvider from "@/context/context";
 import Link from "next/link";
 import React from "react";
 
@@ -9,6 +10,7 @@ const Error404: React.FC = () =>{
     return(
         <>
          <Nav/>
+         <ContextProvider>
          <section className="my-6 mx-1 p-2">
            <div>
             <h1 className="flex flex-col justify-center text-center items-center">
@@ -38,6 +40,7 @@ const Error404: React.FC = () =>{
            <ProductList />
          </div>
          <Footer/>
+         </ContextProvider>
         </>
     )
 }

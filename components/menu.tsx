@@ -83,7 +83,7 @@ const [categoriesArrowStyle, setCategoriesArrowStyle] = useState<string>('');
            Privacy Policy
           </Link>
 
-{/* 
+{/*
           <Link className="p-2 border-t hover:text-[white] hover:bg-primaryColor" href='/cart'>
             Cart
           </Link>
