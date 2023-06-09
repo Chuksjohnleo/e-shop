@@ -18,8 +18,8 @@ const BlogCard: React.FC<myComp> = ({ p, pics }) =>{
               src={p<4?pics:p>6?demoProduct2:demoProduct3} 
               alt='demo product' width={200} height={300} />
            </div>
-           <div className="w-full sm:w-[50%] max-h-[300px] sm:max-h-full">
-            <div className="flex h-[240px] m-1 flex-col max-w-full  overflow-hidden text-[13px] xSm:text-[16.1px]">
+           <div className="w-full sm:w-[50%] max-h-[300px] sm:h-full">
+            <div className="flex h-[240px] sm:h-[190px] m-1 flex-col max-w-full  overflow-hidden text-[13px] xSm:text-[16.1px]">
               <h1 className="text-2xl break-words text-ellipsis h-[50%] overflow-hidden"> 
                 <strong className="h-full inline">
                   Blog Post description hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhwhich shuold not be very small.
