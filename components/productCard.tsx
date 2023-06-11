@@ -12,7 +12,7 @@ interface myComp {
 const ProductCard: React.FC<myComp> = ({ p, pics }) =>{
     return(
         <>
-         <div className="hover:shadow-xl my-2 mx-1 border hover:shadow-primaryColor rounded-2xl">
+         <div className="hover:shadow-xl cursor-pointer transition-shadow duration-500 my-2 mx-1 border hover:shadow-primaryColor rounded-2xl">
             <div>
               <Image className="rounded-t-2xl w-full h-[150px] sm:h-[200px] object-cover object-cotain bg-[grey]/10" 
               src={p<4?pics:p>6?demoProduct2:demoProduct3} 

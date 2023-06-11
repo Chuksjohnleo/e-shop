@@ -148,7 +148,9 @@ const Product: React.FC<myComp> = ({ p , pics }) =>{
             </div>
          </div>
         </section>
-        <ProductList />
+        <div className="mx-4">
+          <ProductList />
+        </div>
       </>
     )
 }
