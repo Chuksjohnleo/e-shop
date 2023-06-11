@@ -4,7 +4,7 @@ import { ParsedUrlQuery } from 'querystring';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Nav from '@/components/nav';
-import Post from '@/components/product';
+import Product from '@/components/product';
 import Footer from '@/components/footer';
 import shadow from '@/assets/shadow.svg';
 
@@ -15,7 +15,7 @@ interface Comment {
 }
 
 
-interface PostData {
+interface ProductData {
     id: string;
     // Add other post properties here
     comments: Comment[];
@@ -27,7 +27,7 @@ interface PostData {
   
 
 interface AllPostsProps {
-  product?: PostData;
+  product?: ProductData;
 }
 
 interface UserParams extends ParsedUrlQuery {
@@ -36,7 +36,7 @@ interface UserParams extends ParsedUrlQuery {
 
 const uri = process.env.DB_URI || '';
 
-const AllPosts: NextPage<AllPostsProps> = ({ product }) => {
+const TheProduct: NextPage<AllPostsProps> = ({ product }) => {
   const router = useRouter();
 
   if (router.isFallback || !product) {
@@ -68,7 +68,7 @@ const AllPosts: NextPage<AllPostsProps> = ({ product }) => {
       <div>
         <Nav />
         {/* <div dangerouslySetInnerHTML={{__html: product.postBody}} /> */}
-        <Post p={2} pics={shadow} />
+        <Product p={2} pics={shadow} />
         <Footer />
       </div>
     </>
@@ -78,7 +78,7 @@ const AllPosts: NextPage<AllPostsProps> = ({ product }) => {
 export const getServerSideProps: GetServerSideProps<AllPostsProps, UserParams> = async ({ params, res }) => {
   const { product } = params || {};
   const client = new MongoClient(uri);
-  let postData: PostData | undefined;
+  let postData: ProductData | undefined;
   console.log('null')
   try {
     console.log('null')
@@ -127,4 +127,4 @@ export const getServerSideProps: GetServerSideProps<AllPostsProps, UserParams> =
   };
 };
 
-export default AllPosts;
+export default TheProduct;

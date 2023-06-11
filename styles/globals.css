@@ -18,13 +18,23 @@
 
 li::marker{
   content: '♥ ';
+  color: black;
   /* 🤍 ► */
+}
+
+@media screen and (max-width:210px){
+  #mainNav{
+    overflow: auto;
+  }
 }
 
 @media screen and (hover:hover){
 
   ::-webkit-scrollbar{
    border-radius: 12px;
+   border: 1px solid navy;
+   height: 10px;
+   width: 12px;
   }
 
   ::-webkit-scrollbar-thumb{
@@ -57,9 +67,6 @@ li::marker{
 }
 
 @media screen and (hover: hover){
-    ::-webkit-scrollbar{
-    height: 15px;
-    }
     
     ::-webkit-scrollbar-thumb{
         /* background-color:; */

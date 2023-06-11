@@ -31,7 +31,7 @@ const [categoriesArrowStyle, setCategoriesArrowStyle] = useState<string>('');
             <div className="text-xl">Menu</div>
             <div>
               <button onClick={handler} className="text-3xl rounded-lg hover:bg-dangerColor/80 hover:fill-[white]">
-               <svg width="40" height="40" viewBox="0 0 512 512">
+               <svg width="30" height="30" viewBox="0 0 512 512">
                  <g id="Page-1" stroke="none" strokeWidth="1" fillRule="evenodd">
                    <g id="work-case" transform="translate(91.520000, 91.520000)">
                     <polygon id="Close" points="328.96 30.2933333 298.666667 1.42108547e-14 164.48 134.4 30.2933333 1.42108547e-14 1.42108547e-14 30.2933333 134.4 164.48 1.42108547e-14 298.666667 30.2933333 328.96 164.48 194.56 298.666667 328.96 328.96 298.666667 194.56 164.48">
@@ -58,17 +58,17 @@ const [categoriesArrowStyle, setCategoriesArrowStyle] = useState<string>('');
             <ul ref={categoryRef} className="h-0 overflow-hidden ml-4 list-disc list-inside">
              <li className="hover:text-secondaryColor p-1 m-1 bg-secondaryColor/10">
                <Link className="break-words" href='/add-item'>
-                tick
+                This
                </Link>
               </li>
               <li className="hover:text-secondaryColor p-1 m-1 rounded bg-secondaryColor/10">
                <Link className="break-words" href='/about-us'>
-                bumbper
+                And
                </Link>
              </li>
              <li className="hover:text-secondaryColor p-1 m-1 rounded bg-secondaryColor/10">
                <Link className=" break-words" href='/privacy-policy'>
-                gabajan
+               That
                </Link>
              </li>
             </ul>
@@ -76,12 +76,16 @@ const [categoriesArrowStyle, setCategoriesArrowStyle] = useState<string>('');
           <Link className="p-2 border-t hover:text-[white] hover:bg-primaryColor" href='/cart'>
             Cart
           </Link>
+          <Link className="p-2 border-t hover:text-[white] hover:bg-primaryColor" href='/privacy-policy'>
+           Setting
+          </Link>
           <Link className="p-2 border-t hover:text-[white] hover:bg-primaryColor" href='/about-us'>
             About us
           </Link>
           <Link className="p-2 border-t hover:text-[white] hover:bg-primaryColor" href='/privacy-policy'>
            Privacy Policy
           </Link>
+
 
 {/*
           <Link className="p-2 border-t hover:text-[white] hover:bg-primaryColor" href='/cart'>
