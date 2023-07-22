@@ -1,5 +1,5 @@
-import Editor from '@/components/addItem';
-import Nav from '@/components/nav';
+import Editor from '@/components/tempComps/addItem';
+import Nav from '@/components/header/nav';
 import Link from 'next/link';
 
 
@@ -7,9 +7,10 @@ export default function HomeIndex() {
 return(
    <>
     <Nav />
+    <h1>I am are still working on this page</h1>
     <div>
       <Editor />
-      <Link href={`/products/p1`} title='products'>
+      <Link href={`/`} title='products'>
         Products
       </Link>
     </div>

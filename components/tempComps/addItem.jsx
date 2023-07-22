@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import ConfirmModal from './confirmModal';
-import Progress from "./progress";
-import Status from "./status";
+import ConfirmModal from '../utils/confirmModal';
+import Progress from "../utils/progress";
+import Status from "../utils/status";
 import dynamic from 'next/dynamic';
 
 
