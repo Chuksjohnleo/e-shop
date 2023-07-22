@@ -52,7 +52,7 @@ const TheProduct: NextPage<ProductProp> = ({ product }) => {
          <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png" />
          <link rel="manifest" href="/favicon_io/site.webmanifest" />
          <meta property="description" content={description} />
-         <meta property="og:url" content={`https://e-shop-chuksjohnleo.vercel.app/products/${product.handle}`} />
+         <meta property="og:url" content={`https://e-shop-chuksjohnleo.vercel.app/products/${product?.handle}`} />
          <meta property="og:type" content="website" />
          <meta property="og:title" content={title} />
          <meta property="og:description" content={description} />
