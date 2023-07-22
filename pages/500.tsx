@@ -4,24 +4,28 @@ import ProductList from "@/components/products/productList";
 import ContextProvider from "@/context/context";
 import Link from "next/link";
 import React from "react";
+import { useRouter } from 'next/router';
 import Head from "next/head";
 
+
 const Error404: React.FC = () =>{
-  const title: string = 'Page does not exist | MediCos';
+  const title: string = 'Internal Server Error | MediCos';
   const ogImage: string = '/favicon_io/favicon-32x32.png';
-  const description: string = `We sell geniune products. Buy geniune products from MediCos`
+  const description: string = `Internal error. We sell geniune products. Buy geniune products from MediCos`
  
+  const router = useRouter();
+
     return(
         <>
-        <Head>
-          <title>{title}</title> 
+         <Head>
+         <title>{title}</title> 
          <link rel="shortcut icon" type="image/x-icon" href="/favicon_io/favicon.ico" />
          <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png" />
          <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png" />
          <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png" />
          <link rel="manifest" href="/favicon_io/site.webmanifest" />
          <meta property="description" content={description} />
-         <meta property="og:url" content={'https://e-shop-chuksjohnleo.vercel.app/404'} />
+         <meta property="og:url" content={'https://e-shop-chuksjohnleo.vercel.app/500'} />
          <meta property="og:type" content="website" />
          <meta property="og:title" content={title} />
          <meta property="og:description" content={description} />
@@ -31,14 +35,14 @@ const Error404: React.FC = () =>{
          <meta name="twitter:title" content={title} />
          <meta name="twitter:description" content={description} />
          <meta name="twitter:image" content={ogImage} />
-  </Head>
+         </Head>
          <Nav/>
          <ContextProvider>
          <section className="my-6 mx-1 p-2">
            <div>
             <h1 className="flex flex-col justify-center text-center items-center">
-                <span className="text-primaryColor text-5xl font-extrabold">404!</span>
-                <span className="text-3xl">{`Chai this page doesn't seem to exist.`}</span>
+                <span className="text-primaryColor text-5xl font-extrabold">500!</span>
+                <span className="text-3xl">{`Chai Server anyi acrashigo.`}</span>
             </h1>
            </div>
            <div className='z-30 m-auto w-[90%] max-w-[400px] sm:text-2xl text-center text-xl text-[white] bg-primaryColor backdrop-blur mt-12 p-0 sm:p-2 rounded-xl'>
@@ -58,6 +62,7 @@ const Error404: React.FC = () =>{
               </Link>
              </div>
            </div>
+           <button className="border m-2 p-2" onClick={()=>router.back()}> &lt; Back </button>
          </section>
          <div  className="my-6 mx-1 p-2">
            <ProductList />

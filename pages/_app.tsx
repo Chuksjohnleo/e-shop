@@ -4,7 +4,8 @@ import ContextProvider from '@/context/context';
 import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
-import HorizontalLoader from '@/components/horizontalLoader';
+import HorizontalLoader from '@/components/utils/horizontalLoader';
+
 
 
 
@@ -15,7 +16,6 @@ export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     const handleStart = () => {
       setLoading(true);
-      console.log('loadingg..')
     };
 
     const handleComplete = () => {
@@ -34,12 +34,14 @@ export default function App({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <ContextProvider>
+    <>
       <Head>
         <meta name='theme-color' content='#1e40af' />
       </Head>
       {loading && <HorizontalLoader />}
-      <Component {...pageProps} />
-    </ContextProvider>
+      <ContextProvider>
+       <Component {...pageProps} />
+      </ContextProvider>
+    </>
   )
 }

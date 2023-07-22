@@ -1,32 +1,29 @@
 import { GetServerSideProps, NextPage } from 'next';
-import { MongoClient } from 'mongodb';
 import { ParsedUrlQuery } from 'querystring';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import Nav from '@/components/nav';
-import Product from '@/components/product';
-import Footer from '@/components/footer';
+import Nav from '@/components/header/nav';
+import Product from '@/components/products/product';
+import Footer from '@/components/layout/footer';
 import shadow from '@/assets/shadow.svg';
-
-interface Comment {
-  _id: string;
-  postId: string;
-  // Add other comment properties here
-}
+// import { _product } from '@/components/products/productCard';
+import { getProduct } from '@/libs/product';
 
 
-interface ProductData {
-    id: string;
-    // Add other post properties here
-    comments: Comment[];
-    images: string[];
-    description: string;
-    title: string;
-    postBody: string
+export interface ProductData {
+  id: string,
+  title: string,
+  description: string,
+  price: number,
+  currency: string,
+  handle: string;
+  images: any;
+  totalInventory: string;
+  variants: any;
   }
   
 
-interface AllPostsProps {
+interface ProductProp {
   product?: ProductData;
 }
 
@@ -36,83 +33,76 @@ interface UserParams extends ParsedUrlQuery {
 
 const uri = process.env.DB_URI || '';
 
-const TheProduct: NextPage<AllPostsProps> = ({ product }) => {
+const TheProduct: NextPage<ProductProp> = ({ product }) => {
   const router = useRouter();
-
+ 
   if (router.isFallback || !product) {
-    console.log('ok')
-    const title = 'Post | TheBlogging';
-    const ogImage = '/favicon_io/favicon-32x32.png';
-    const description = 'Everything you have to know about a website and website development.';
-
+  
+    const title: string = 'Home | MediCos';
+    const ogImage: string = '/favicon_io/favicon-32x32.png';
+    const description: string = `We sell geniune products. Buy geniune products from MediCos`
+ 
     return (
       <>
         <Head>
-          <title>{`${title} | Medicos`}</title>
-          {/* Add your other meta tags */}
+         <title>{title}</title> 
+         <link rel="shortcut icon" type="image/x-icon" href="/favicon_io/favicon.ico" />
+         <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png" />
+         <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png" />
+         <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png" />
+         <link rel="manifest" href="/favicon_io/site.webmanifest" />
+         <meta property="description" content={description} />
+         <meta property="og:url" content={`https://e-shop-chuksjohnleo.vercel.app/products/${product.handle}`} />
+         <meta property="og:type" content="website" />
+         <meta property="og:title" content={title} />
+         <meta property="og:description" content={description} />
+         <meta property="og:image" content={ogImage} />
+         <meta name="twitter:site" content="@Chuksjohnleo" />
+         <meta name="twitter:card" content="summary_large_image" />
+         <meta name="twitter:title" content={title} />
+         <meta name="twitter:description" content={description} />
+         <meta name="twitter:image" content={ogImage} />
         </Head>
         <div>Loading...</div>
       </>
     );
   }
 
+
   const { title, images, description } = product;
-  const ogImage = images && images.length > 0 ? images[0] : '/favicon_io/favicon-32x32.png';
+  const ogImage = images && images[0]?.node?.originalSrc?.length > 0 ? images[0]?.node?.originalSrc : '/favicon_io/favicon-32x32.png';
 
   return (
     <>
       <Head>
         <title>{title}</title>
-        {/* Add your other meta tags */}
+        {/* other meta tags */}
       </Head>
       <div>
         <Nav />
         {/* <div dangerouslySetInnerHTML={{__html: product.postBody}} /> */}
-        <Product p={2} pics={shadow} />
+        <Product product={product} />
         <Footer />
       </div>
     </>
   );
 };
 
-export const getServerSideProps: GetServerSideProps<AllPostsProps, UserParams> = async ({ params, res }) => {
+export const getServerSideProps: GetServerSideProps<ProductProp, UserParams> = async ({ params, res }) => {
   const { product } = params || {};
-  const client = new MongoClient(uri);
-  let postData: ProductData | undefined;
-  console.log('null')
-  try {
-    console.log('null')
-    await client.connect();
-    const db = client.db('blog');
-    const category = db.collection('posts');
-    const commentCollection = db.collection('postComments');
-
-    const body = await category.findOne({ id: product }, { projection: { _id: 0 } });
-    
-    const postComments = await commentCollection.find({ postId: product }, { projection: { _id: 0 } }).sort({ _id: -1 }).toArray();
-
-    if (body !== null) {
-       
-      body.comments = postComments;
-      const { id, images, description, title, comments, postBody } = body;
-      postData = {
-        id,
-        comments,
-        images,
-        description,
-        title,
-        postBody
-      };
-    }
-  } catch (error) {
-    console.log(error);
-  } finally {
-    await client.close();
-  }
-
-  if (!postData) {
-    console.log(postData, 'll');
-    res?.writeHead(302, { location: '/404' });
+  // console.log(res.query)
+  const productData = await getProduct(product);
+  // const productData = {
+  //   id: data.id,
+  //   title: data.title,
+  //   description: data.description,
+  //   price: data.priceRange.minVariantPrice.amount,
+  //   currency: data.priceRange.minVariantPrice.currencyCode,
+  //   images: data.images.edges,
+  //   handle : data.handle
+  // }
+  if (!productData) {
+    res?.writeHead(302, { location: '/500' });
     res?.end();
 
     return {
@@ -122,7 +112,7 @@ export const getServerSideProps: GetServerSideProps<AllPostsProps, UserParams> =
 
   return {
     props: {
-      product: postData,
+      product: productData,
     },
   };
 };

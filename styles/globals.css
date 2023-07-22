@@ -7,7 +7,11 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
-
+*{
+  font-family: cursive;
+  word-wrap: break-word;
+  max-width: 100vw;
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
@@ -18,13 +22,40 @@
 
 li::marker{
   content: '♥ ';
-  color: black;
   /* 🤍 ► */
 }
 
-@media screen and (max-width:210px){
+.form-group {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  position: absolute;
+  pointer-events: none;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: 0.2s ease-out;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+/* Add styles to show the label as "floating" when the input is focused or has content */
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label {
+  transform: translateY(-170%) scale(0.8);
+  left: 0px;
+}
+
+
+@media screen and (max-width:200px){
   #mainNav{
-    overflow: auto;
+    overflow-x: auto;
   }
 }
 

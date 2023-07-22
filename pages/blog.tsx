@@ -1,18 +1,14 @@
-import Cart from '@/components/cart/cart';
-import demoProduct from '@/assets/drugs/alexander-grey-FEPfs43yiPE-unsplash.jpg';
-import Link from 'next/link';
-import Head from 'next/head';
+import Blog from "@/components/blog/blog";
+import Head from "next/head";
 
-
-export default function HomeIndex() {
-  const title: string = 'Cart | MediCos';
+const blogPage = () =>{
+  const title: string = 'Blog | MediCos';
   const ogImage: string = '/favicon_io/favicon-32x32.png';
-  const description: string = `View your cart contents on MediCos. We sell geniune products. Buy geniune products from MediCos`
+  const description: string = `Get the best product information from Medicos blog. We sell geniune products. Buy geniune products from MediCos`
  
-return(
-   <>
-    <div>
-    <Head>
+    return(
+        <>
+   <Head>
           <title>{title}</title> 
          <link rel="shortcut icon" type="image/x-icon" href="/favicon_io/favicon.ico" />
          <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png" />
@@ -31,8 +27,9 @@ return(
          <meta name="twitter:description" content={description} />
          <meta name="twitter:image" content={ogImage} />
   </Head>
-      <Cart pics={demoProduct} />
-    </div>
-   </>
-  )
+         <Blog />
+        </>
+    )
 }
+
+export default blogPage;
