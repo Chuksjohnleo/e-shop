@@ -8,8 +8,8 @@ import Footer from './footer';
 import PopularProducts from '../products/popularProducts';
 import Categories from '../categories/categories';
 import Testcat from '../categories/testcat';
-import Blog from '../blog/blog';
 import NewProducts from '../products/newProducts';
+import BlogList from '../blog/blogList';
 
 
 function Home(){
@@ -67,7 +67,7 @@ function Home(){
            <Services />
            <About />
          </div>
-         <Blog />
+         <BlogList />
          <OtherInfo />
          </div>
          <Footer />

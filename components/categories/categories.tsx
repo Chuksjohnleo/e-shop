@@ -1,8 +1,13 @@
 import React, { useRef, useEffect, useState } from "react";
 import demoProduct from "@/assets/drugs/alexander-grey-FEPfs43yiPE-unsplash.jpg";
 import CategoryCard from "./categoryCard";
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+// import 'swiper/swiper-bundle.min.css';
 
 
 const Categories = () => {
@@ -34,19 +39,16 @@ const Categories = () => {
           </h1>
         </div>
         <div>
-          {/* <swiper-container
-            ref={swiperRef}
-            slides-per-view="1"
-            navigation="true"
-            pagination="true"
-            centeredSlides="true"
-          > */}
           <Swiper
-      spaceBetween={10}
-      slidesPerView={1}
-      onSlideChange={() => console.log('slide change')}
-      onSwiper={(swiper) => console.log(swiper)}
-    >
+            modules={[Navigation, Pagination, Scrollbar, A11y]}
+            spaceBetween={0}
+            slidesPerView={1}
+            navigation
+            pagination={{ clickable: true }}
+            // scrollbar={{ draggable: true }}
+            onSlideChange={() => console.log('slide change')}
+            onSwiper={(swiper) => console.log(swiper)}
+             >
             {products.map((n, i) => {
               return (
                <SwiperSlide key={i}>

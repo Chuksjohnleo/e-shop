@@ -45,6 +45,11 @@ const Product: React.FC<myComp> = ({ product }) => {
   const [cartId, setCartId] = useState<string | null>("");
   // const [status, setStatus] = useState<boolean>(false);
 
+  useEffect(()=>{
+   if(!variants[variant]){
+    setVariant(0)
+   }
+  })
   useEffect(() => {
     if (localStorage.getItem("cartId")) {
       setCartId(localStorage.getItem("cartId"));
@@ -143,11 +148,11 @@ const Product: React.FC<myComp> = ({ product }) => {
   }
 
   function handleQuantity(direction: string) {
-    if (quantity <= variants[variant].node.quantityAvailable) {
+    if (quantity <= variants[variant]?.node.quantityAvailable) {
       if (
         quantity >= 1 &&
         direction === "increment" &&
-        quantity < variants[variant].node.quantityAvailable
+        quantity < variants[variant]?.node.quantityAvailable
       ) {
         setQuantity((n) => n + 1);
         return;
@@ -162,7 +167,7 @@ const Product: React.FC<myComp> = ({ product }) => {
     if (
       Number(e.target.value.split(".").join("")) > 0 &&
       Number(e.target.value.split(".").join("")) <=
-        variants[variant].node.quantityAvailable
+        variants[variant]?.node.quantityAvailable
     )
       setQuantity(Number(e.target.value.split(".").join("")));
   }
@@ -183,11 +188,14 @@ const Product: React.FC<myComp> = ({ product }) => {
   }
 
   useEffect(() => {
-    setTotalPrice(Number((variants[variant].node.priceV2.amount * quantity).toFixed(2)));
+    setTotalPrice(Number((variants[variant]?.node.priceV2.amount * quantity).toFixed(2)));
   }, [quantity, variant]);
   
   useEffect(()=>{
-    router.query.variant = variants[variant].node.title;
+    if(variants[variant]?.node.quantityAvailable < quantity){
+      setQuantity(variants[variant]?.node.quantityAvailable)
+    }
+    router.query.variant = variants[variant]?.node.title;
     router.push({
       pathname: router.pathname,
       query: router.query
@@ -212,11 +220,11 @@ const Product: React.FC<myComp> = ({ product }) => {
               }}
               className="rounded-t-2xl w-full h-[300px] sm:h-[350px] object-contain bg-[grey]/10"
               src={
-                variants[variant].node.image?.originalSrc?.length > 0
-                  ? variants[variant].node.image?.originalSrc
+                variants[variant]?.node.image?.originalSrc?.length > 0
+                  ? variants[variant]?.node.image?.originalSrc
                   : demoProduct3
               }
-              alt={variants[variant].node.image?.altText || "demo product"}
+              alt={variants[variant]?.node.image?.altText || "demo product"}
               width={200}
               height={300}
             />
@@ -254,9 +262,9 @@ const Product: React.FC<myComp> = ({ product }) => {
                 })}
               </div>
               <strong className="max-w-screen break-words">
-                {variants[variant].node.title === "Default Title"
+                {variants[variant]?.node.title === "Default Title"
                   ? title
-                  : variants[variant].node.title}
+                  : variants[variant]?.node.title}
               </strong>
             </div>
           </div>
@@ -290,10 +298,10 @@ const Product: React.FC<myComp> = ({ product }) => {
             <div>
               <strong>Quantity</strong>
               <br />
-              <span>Available: {variants[variant].node.quantityAvailable}</span>
+              <span>Available: {variants[variant]?.node.quantityAvailable}</span>
             </div>
             <div className="flex justify-center">
-              {variants[variant].node.quantityAvailable > 0 ? (
+              {variants[variant]?.node.quantityAvailable > 0 ? (
                 <div className="flex rounded-xl m-1 w-full max-w-[250px] border justify-around items-center text-xl">
                   <button
                     disabled={quantity === 1 && true}
@@ -313,7 +321,7 @@ const Product: React.FC<myComp> = ({ product }) => {
                     type="number"
                     inputMode="numeric"
                     min={1}
-                    max={variants[variant].node.quantityAvailable}
+                    max={variants[variant]?.node.quantityAvailable}
                   />
                   <button
                     onClick={() => handleQuantity("increment")}
@@ -328,9 +336,9 @@ const Product: React.FC<myComp> = ({ product }) => {
                 <div className="max-w-full break-words m-1 p-1">
                   <span>Sorry we are low on </span>
                   <strong className="text-[#69690c]">
-                    {variants[variant].node.title === "Default Title"
+                    {variants[variant]?.node.title === "Default Title"
                       ? title
-                      : variants[variant].node.title}
+                      : variants[variant]?.node.title}
                   </strong>
                   <span> {title} </span>
                 </div>
@@ -339,25 +347,25 @@ const Product: React.FC<myComp> = ({ product }) => {
           </div>
           <div className="flex flex-col">
 
-          {variants[variant].node.compareAtPriceV2 &&
+          {variants[variant]?.node.compareAtPriceV2 &&
              <div className="flex w-full text-center PCmin:w-auto PCmin:flex-row flex-col rounded-xl p-2 m-2 self-center border items-center justify-around max-w-[90%]">
               <strong className="text-xl text-[#c50101]">
                 <del>
-                  <span> {variants[variant].node.compareAtPriceV2.currencyCode} </span>
-                  <span> {variants[variant].node.compareAtPriceV2.amount} </span>
+                  <span> {variants[variant]?.node.compareAtPriceV2.currencyCode} </span>
+                  <span> {variants[variant]?.node.compareAtPriceV2.amount} </span>
                 </del>
               </strong>
               <em className="p-1 animate-bounce text-primaryColor">
-                 {`-${percentageDiscount(variants[variant].node.priceV2.amount, variants[variant].node.compareAtPriceV2.amount)}%`}
-                 {/* {`-${((Number(variants[variant].node.compareAtPriceV2.amount - variants[variant].node.priceV2.amount)/Number(variants[variant].node.compareAtPriceV2.amount))*100).toFixed(2)}%`}</em> */}
+                 {`-${percentageDiscount(variants[variant]?.node.priceV2.amount, variants[variant]?.node.compareAtPriceV2.amount)}%`}
+                 {/* {`-${((Number(variants[variant]?.node.compareAtPriceV2.amount - variants[variant].node.priceV2.amount)/Number(variants[variant].node.compareAtPriceV2.amount))*100).toFixed(2)}%`}</em> */}
               </em> 
             </div>}
 
             <div className="flex w-full text-center PCmin:w-auto PCmin:flex-row flex-col rounded-xl p-2 m-2 self-center border items-center justify-around max-w-[90%]">
               <strong> Price: </strong>
               <strong className="text-xl">
-                <span>{variants[variant].node.priceV2.currencyCode} </span>
-                <span>{variants[variant].node.priceV2.amount}</span>
+                <span>{variants[variant]?.node.priceV2.currencyCode} </span>
+                <span>{variants[variant]?.node.priceV2.amount}</span>
               </strong>
             </div>
 
@@ -371,12 +379,12 @@ const Product: React.FC<myComp> = ({ product }) => {
 
             <div className="flex flex-col xSm:flex-row justify-center text-center mt-5 font-bold text-xl">
               <button
-                onClick={() => addToCart(variants[variant].node.id, quantity)}
+                onClick={() => addToCart(variants[variant]?.node.id, quantity)}
                 disabled={
-                  variants[variant].node.quantityAvailable > 1 
+                  variants[variant]?.node.quantityAvailable > 1 
                   && ongoingAction !== 'addToCart' ? false : true
                 }
-                className="flex justify-center py-4 disabled:cursor-not-allowed flex-1 text-[white] bg-primaryColor px-1 rounded-md m-1"
+                className="flex justify-center py-4 disabled:cursor-not-allowed flex-1 text-[white] bg-primaryColor hover:bg-secondaryColor px-1 rounded-md m-1"
               >
                 {ongoingAction === 'addToCart'? 
                 <Progress height={'30px'} color={'white'} />: 'Add to cart'}
@@ -385,13 +393,13 @@ const Product: React.FC<myComp> = ({ product }) => {
                 type="button"
                 title="Buy now"
                 disabled={
-                  variants[variant].node.quantityAvailable > 1 
+                  variants[variant]?.node.quantityAvailable > 1 
                   && ongoingAction !== 'checkout' ? false : true
                 }
                 onClick={() =>
-                  handleCheckout(variants[variant].node.id, quantity)
+                  handleCheckout(variants[variant]?.node.id, quantity)
                 }
-                className="py-4 flex justify-center disabled:cursor-not-allowed flex-1 text-center text-[white] bg-secondaryColor px-1 rounded-md m-1"
+                className="py-4 flex justify-center disabled:cursor-not-allowed flex-1 text-center text-[white] bg-[navy] hover:bg-secondaryColor px-1 rounded-md m-1"
               >
                {ongoingAction === 'checkout'? 
                 <Progress height={'30px'} color={'white'} />: 'Buy now'

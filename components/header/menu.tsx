@@ -28,7 +28,12 @@ const [categoriesArrowStyle, setCategoriesArrowStyle] = useState<string>('');
     return(
         <div className={`fixed rounded-br-2xl shadow-primaryColor shadow-md z-50 overflow-y-auto max-h-[600px] bg-[white] top-0 ${theWidth} transition-[width] duration-200 max-w-[500px]`}>
          <div className="flex backdrop-blur sticky top-0 justify-between items-center font-extrabold m-1 p-1">
-            <div className="text-xl">Menu</div>
+            <div className="xSm:text-xl">Menu</div>
+            {/* <div className="flex break-words">
+              <button>Nke mbu</button>
+              <button>Nke ibuo</button>
+              <button>Nke ito</button>
+            </div> */}
             <div>
               <button onClick={handler} className="text-3xl rounded-lg hover:bg-dangerColor/80 hover:fill-[white]">
                <svg width="30" height="30" viewBox="0 0 512 512">
@@ -43,28 +48,31 @@ const [categoriesArrowStyle, setCategoriesArrowStyle] = useState<string>('');
             </div>
          </div>
          <nav className="flex flex-col p-3 overflow-y-auo font-bold justify-center">
-          <Link className="p-2 border-t hover:text-[white] hover:bg-primaryColor" href='/'>
+          <Link title="Home" className="p-2 border-t hover:text-[white] hover:bg-primaryColor" href='/'>
             Home
           </Link>
-          <Link className="p-2 border-t hover:text-[white] hover:bg-primaryColor" href='/blog'>
+          <Link title="Product" className="p-2 border-t hover:text-[white] hover:bg-primaryColor" href='/products'>
+           Products
+          </Link>
+          <Link title="Blog" className="p-2 border-t hover:text-[white] hover:bg-primaryColor" href='/blog'>
            Blog
           </Link>
-          <Link className="p-2 border-t hover:text-[white] hover:bg-primaryColor" href='/register'>
+          <Link title="Register" className="p-2 border-t hover:text-[white] hover:bg-primaryColor" href='/register'>
            Register
           </Link>
           <Link title="Login" className="p-2 border-t hover:text-[white] hover:bg-primaryColor" href='/login'>
            Login
           </Link>
           <div>
-           <div  onClick={(e)=>collapse(categoryRef, e)} className="group cursor-pointer relative flex justify-between items-center p-2 border-t hover:fill-[white] hover:text-[white] hover:bg-primaryColor">
+           <button type="button" title="Categories" onClick={(e)=>collapse(categoryRef, e)} className="group cursor-pointer relative flex justify-between items-center p-2 border-t hover:fill-[white] hover:text-[white] hover:bg-primaryColor w-full">
             <span> Categories </span> 
             <svg className={`group-hover:fill-[white] ease-in duration-300 ${categoriesArrowStyle}`} width="15" height="15" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
              <g>
               <path d="M14,52a2,2,0,0,1-1.41-3.41L35.17,26,12.59,3.41a2,2,0,0,1,0-2.82,2,2,0,0,1,2.82,0l24,24a2,2,0,0,1,0,2.82l-24,24A2,2,0,0,1,14,52Z"/>
              </g>
             </svg>
-            </div>
-            <ul ref={categoryRef} className="h-0 overflow-hidden ml-4 list-disc list-inside">
+           </button>
+           <ul ref={categoryRef} className="h-0 overflow-hidden ml-4 list-disc list-inside">
              <li className="hover:text-secondaryColor p-1 m-1 bg-secondaryColor/10">
                <Link className="break-words" href='/add-item'>
                 This
@@ -80,18 +88,18 @@ const [categoriesArrowStyle, setCategoriesArrowStyle] = useState<string>('');
                That
                </Link>
              </li>
-            </ul>
+           </ul>
           </div>
-          <Link className="p-2 border-t hover:text-[white] hover:bg-primaryColor" href='/cart'>
+          <Link title="View your Cart" className="p-2 border-t hover:text-[white] hover:bg-primaryColor" href='/cart'>
             Cart
           </Link>
-          <Link className="p-2 border-t hover:text-[white] hover:bg-primaryColor" href='/privacy-policy'>
+          <Link title="Setting" className="p-2 border-t hover:text-[white] hover:bg-primaryColor" href='/privacy-policy'>
            Setting
           </Link>
-          <Link className="p-2 border-t hover:text-[white] hover:bg-primaryColor" href='/about-us'>
+          <Link title="About Us" className="p-2 border-t hover:text-[white] hover:bg-primaryColor" href='/about-us'>
             About us
           </Link>
-          <Link className="p-2 border-t hover:text-[white] hover:bg-primaryColor" href='/privacy-policy'>
+          <Link title="Privacy policy" className="p-2 border-t hover:text-[white] hover:bg-primaryColor" href='/privacy-policy'>
            Privacy Policy
           </Link>
 

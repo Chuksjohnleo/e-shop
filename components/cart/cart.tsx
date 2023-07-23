@@ -128,7 +128,7 @@ const Cart: React.FC<myComp> = ({ pics }) =>{
         <p className="w-full max-w-[500px] mx-auto rounded-lg shadow-sm bg-[aquamarine] p-1">
           <strong> Note: </strong>
           <em>
-            You can only purchase a maximum of 50 items for any variant per checkout.
+            You can only purchase a maximum of the quantity of items available for any variant per checkout.
             If we are low on any product, we will notify you at checkout and also modify
             the quantity automatically. <br/><span className="font-bold text-2xl">Happy Shopping!!!</span>
           </em>
@@ -160,7 +160,7 @@ const Cart: React.FC<myComp> = ({ pics }) =>{
       }
 
         <div className="sticky bottom-0 max-w-[90vw] mx-auto break-words">   
-          <button onClick={()=>checkOut()} type="button" title="Checkout" className="flex justify-center py-4 text-2xl w-full text-center text-[white] bg-primaryColor hover:bg-secondaryColor rounded-md">
+          <button onClick={()=>checkOut()} type="button" title="Checkout" className="flex justify-center py-4 text-2xl w-full text-center text-[white] bg-[navy] hover:bg-secondaryColor rounded-md">
            
              {
                ongoingAction === 'checkout'? 

@@ -64,6 +64,7 @@ const Nav: React.FC = () =>{
       // setLoading(true);
       setNavWidth('w-0');
       setViewNotifications({height:'h-0', border: ''});
+      setSearchQuery('');
     };
 
     Router.events.on('routeChangeStart', handleRouter);
@@ -126,7 +127,7 @@ const Nav: React.FC = () =>{
 
   function openAndCloseMenu() {
     if(navWidth==='w-0'){
-      setNavWidth('w-[70vw]');
+      setNavWidth('w-[75vw]');
     }else{
       setNavWidth('w-0');
     }
@@ -172,14 +173,21 @@ const Nav: React.FC = () =>{
            </button>
          </div>
          <h1 className='font-extrabold text-[16.1px] xSm:text-2xl'>
-           <span>Medi</span> 
-           <span className='text-primaryColor'>Cos</span>
+          <Link title='MediCos Homepage' href='/' className='hover:text-primaryColor'>       
+            <span>Medi</span> 
+            <span className='text-primaryColor'>Cos</span>
+          </Link>
          </h1>
       </div>
-      <div className='hidden text-secondaryColor sm:flex justify-around gap-1 text-[13px] sm:gap-9 xSm:text-[16.1px] font-semibold'>
+      <div className='hidden text-secondaryColor md:flex justify-around gap-1 text-[13px] sm:gap-9 xSm:text-[16.1px] font-semibold'>
         <div>
          <Link href='/' className='hover:text-primaryColor'>
            Home
+         </Link>
+        </div>
+        <div>
+         <Link href='/products' className='hover:text-primaryColor'>
+           Products
          </Link>
         </div>
         <div>
@@ -260,7 +268,7 @@ const Nav: React.FC = () =>{
          </div>
       </div>
      </nav>
-     {/* <Menu handler={openAndCloseMenu} theWidth={navWidth} /> */}
+     <Menu handler={openAndCloseMenu} theWidth={navWidth} />
      <div>
       <div className='w-full p-1 flex justify-center'>
        <input 
@@ -274,10 +282,10 @@ const Nav: React.FC = () =>{
       </div>
       {searchQuery.length>0?
       <>
-       <div className='border text-dangerColor text-center p-2 mx-auto my-1 PCmin:max-w-[90vw] rounded-lg'>
+       <div className='border text-dangerColor text-center p-2 mx-2 PCmin:mx-auto my-1 PCmin:max-w-[90vw] rounded-lg'>
         <button onClick={()=>setSearchQuery('')} className='text-2xl font-bold max-w-[98vw] break-words'> Cancel </button>
        </div>
-       <div className='overflow-y-auto border mx-auto my-1 PCmin:max-w-[90vw] max-h-[70vh] rounded-lg'>
+       <div className='overflow-y-auto border  mx-2 PCmin:mx-auto my-1 PCmin:max-w-[90vw] max-h-[70vh] rounded-lg'>
         {searchResults.length>0 && ongoingAction !== 'search'?
            searchResults.map(s=>{
             return(
@@ -308,7 +316,7 @@ const Nav: React.FC = () =>{
       </>:''}
      </div>
     </header>
-    <Menu handler={openAndCloseMenu} theWidth={navWidth} />
+    {/* <Menu handler={openAndCloseMenu} theWidth={navWidth} /> */}
     </>
     )
 }

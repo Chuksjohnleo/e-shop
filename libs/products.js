@@ -23,7 +23,7 @@ export async function getProducts() {
  */
   const query = gql`
     query {
-      products(first: 33) {
+      products(first: 20) {
         edges {
           node {
             id
